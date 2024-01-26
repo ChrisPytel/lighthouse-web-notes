@@ -26,7 +26,7 @@ This repository contains all of my notes taken by [Chris](https://github.com/Chr
     * Note during LHL Git and GitHub Account Setup
 
 * Module 1
-  * Week 1
+  * [Week 1](/Week_1)
     * Gists
     * Refactoring
     * ESlint
@@ -34,6 +34,10 @@ This repository contains all of my notes taken by [Chris](https://github.com/Chr
     * Pair Programming
     * Projects
   * Week 2
+    * something
+    * something
+    * something
+    * something
 * Lecture notes
   * Week1 L1
   * Week1 L2
@@ -51,3 +55,29 @@ content content content content content content
 content content content content content content 
 ###### This is an H6 header (smallest)
 content content content content content content 
+
+
+
+
+
+
+
+
+
+
+
+### Tips
+
+Try experimenting with the comparison operators (`<`, `>`, `===`, etc.) in the node REPL, which you can launch using the `node` command in Vagrant.
+
+Work on your code iteratively – that means in small pieces. 
+
+To help you figure out how to use `hungry` and `availableTime` inside your function, try outputting their values to the Terminal as follows.
+
+
+```javascript
+function whatToDoForLunch(hungry, availableTime) {
+  console.log("hungry is", hungry);
+  console.log("availableTime is", availableTime);
+}
+```
