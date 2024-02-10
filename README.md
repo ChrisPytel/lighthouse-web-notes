@@ -1,12 +1,13 @@
 # Chris's Lighthouse Dev Notes
 
-<i>Dev Notes V2, ported over previous notes doc and added up to weeks 2 and 3 content</i>
+<i>"LHL Notes Doc V3 - Fleshed out notes on Week 2 and 3 content"</i>
 
 ### Summary 
 This repository contains all of my notes taken by [Chris](https://github.com/ChrisPytel) that I've compiled for the Lighthouse Labs Web Development Bootcamp. 
 https://www.markdownguide.org/basic-syntax/
 
-# Table of Contents for javascript
+# Table of Contents for Module 1 - Javascript
+
   * [Variables and Datatype Properties](#variables)
   * [Strings](#strings)
   * [Numbers and Operators](#numbers-and-operators)
@@ -17,28 +18,28 @@ https://www.markdownguide.org/basic-syntax/
   * [Comparisons and Booleans](#comparisons-and-booleans)
   * [Objects](#objects)
 
-* Module 1 - Javascript
-  * [Week 1](#week-1)
-    * Gists
-    * Refactoring
-    * ESlint
-    * Markdown
-  * [Week 2](#week-2)
-    * Datatypes
-    * Object Iteration
-    * Anon functions
-    * Arrow functions
-    * Callbacks
-  * [Week 3](#week-3)
-    * Object Methods
-    * Recursion
-    * Testing with Mocha and Chai
-    * Object Oriented JS
-  * [Week 4](#week-4)
-    * ...
-    * ...
-    * ...
-    * ...
+
+    * [Week 1](#week-1)
+      * Gists
+      * Refactoring
+      * ESlint
+      * Markdown
+    * [Week 2](#week-2)
+      * Datatypes
+      * Object Iteration
+      * Anon functions
+      * Arrow functions
+      * Callbacks
+    * [Week 3](#week-3)
+      * Object Methods
+      * Recursion
+      * Testing with Mocha and Chai
+      * Object Oriented JS
+    * [Week 4](#week-4)
+      * ...
+      * ...
+      * ...
+      * ...
 
 
 
@@ -631,6 +632,23 @@ function(addThree);       //when this function is called, it runs and calculates
 console.log(sum);         //as there was no return statement as a result of running the function, the console outputs the original sum of 10
 ```  
 
+## Function Properties
+Since functions are technically objects, we can assign values to them as though they were an object. These can be accessed and changed later on as well
+
+```js
+const myFunc = function() {
+  console.log("I am function.");
+}
+myFunc.someAttribute = 42;
+console.log(myFunc);
+console.log(myFunc.someAttribute);
+myFunc();
+// output is: 
+// [Function: myFunc] { someAttribute: 42 }
+// 42
+// I am function.
+```
+
 
 
 # Comparisons and Booleans
@@ -801,34 +819,70 @@ let values = Object.values(boss);
 console.log(values); // Will Output the values: ['Tony', '56', 'Waste Management Consulting']
 ```
 
- <br> <br> <br> <br> <br> <br> <br> <br> <br>
+ <br> <br> <br> <br> ------------------------------------------<br> <br> <br> <br> <br>
 
 # Weekly Notes Recap
 
-# Week 1
 
-
+# `Week 1`
 `Gists` are a part of github that function as repositories for singular files, they can be forked/cloned and shared via link for peers to review
 
 `Refactoring` is the practice of going back to your code and cleaning up. During this process you remove redundant logic and streamline code for readability. Lightweight code is better
 
 `ESlint` is a npm package for node used to format your .js files to a certain standard
 
- `Markdown` aka .md is a filetype similar to .txt but it is much more versatile. Generally youll find find one in most github repos as a README.md
+`Markdown` aka .md is a filetype similar to .txt but it is much more versatile. Generally youll find find one in most github repos as a README.md
 
-# Week 2
+`Command line arguments`
+The built in node method `process.argv` takes whatever we input into our console and returns an array with every arguement as its own string within an array.
 
+If we write into terminal: `$ node cmdLineArgs.js 16 32 16`
+
+```js
+//cmdLineArgs.js
+const commandLineArgs = process.argv; //is an array of strings
+console.log(commandLineArgs); //displays what our input is from cmd line
+function sumArguments(input) {
+  let total = 0;
+  for (const arg of input) {
+    const converted = Number(arg);//converts the string numbers to integers
+    if (Number.isInteger(converted) && converted > 0) {
+      total += converted; //adds our numbers
+    }
+  }
+  return total; //returns total to be printed
+}
+console.log(sumArguments(commandLineArgs)); //prints our sum of 64
+```
+
+
+
+# `Week 2`
 ## Primitives Datatypes Vs Objects
 [covered here](#primitive-vs-objects)
 
 ## Object Iteration
- asdasd
-
-## Higher order functions
-Are functions that take in another function as an arguement,   <b>or</b>
-returns a function as its result. Here is an example; `applyOperation` takes in 2 numbers and a function, and <b>also</b> returns a function.
+ Object iteration is most commonly done using the `for..in` loop. As opposed to the `for..of` or `c-style for loop` that is used for arrays. Remember my mnemonic of `foreign object = for..in object` when judging which type of loop to use in which case.
 ```js
-function applyOperation(x, y, operation) {
+const person = {
+  name: 'Alice',
+  age: 30,
+  city: 'Midland',
+  job: 'Hair Stylist'  
+};
+for (const key in person) {
+  console.log(`${key}: ${person[key]}`);
+}
+```
+
+## Higher Order functions
+Higher order functions take in another function as an arguement, <b>or</b>
+returns a function as its result. 
+<br> Here is an example; `applyOperation` takes in 2 numbers and a function, and <b>also</b> returns a function.
+
+```js
+//This is a higher order operation because returns another function as an arg.
+function applyOperation(x, y, operation) { 
   return operation(x, y);
 }
 function add(a, b) {
@@ -839,9 +893,9 @@ function multiply(a, b) {
 }
 console.log(applyOperation(2, 3, add)); // Output: 5
 console.log(applyOperation(2, 3, multiply)); // Output: 6
-
 ```
 
+Here is another
 ```js
 function greet(name, formatter) {
   return formatter(name);
@@ -856,17 +910,100 @@ console.log(greet('alice', capitalize)); // Output: "Alice"
 console.log(greet('bob', addExclamation)); // Output: "bob!"
 ```
 
+## Callbacks
+Callbacks are a type of higher order function. They are a function that is passed in by reference into another function, known as the `reciever`. The `reciever` can call the callback function as many times as needed
+```js
+function greet(name, callback) {//this is the reciever function
+  return "Hello, " + callback(name);
+}
+function passName(personGreeted) {//this is the callback function, it will return its results into the reciever function
+  return `${personGreeted}, what a nice day today!`;
+}
+console.log(greet("Steve", passName)); 
+// Output: Hello Steve, what a nice day today!
+```
+
 ## Anonymous functions
-asdasd
+Anonymous functions are unique in that they do not be defined to a variable or named. Often times `callback functions` and `arrow functions` are anonymous as they only really function to return a value and dont need to be defined.
+
+```js
+function longNames(names, callback) {
+  let maxIndex = 0;
+  
+  for (let i = 1; i < names.length; i++) {
+    if (names[i].length > names[maxIndex].length) {
+      maxIndex = i;
+    }
+  }
+  callback(names[maxIndex]);
+}
+//this function passed in as an arg is is anonymous
+longNames(["Alexander", "Christopher", "Anastasia", "Gabrielle"], function(index) {
+  console.log("The longest name here is:", index);
+});
+```
+
+### Hoisting anon functions
+Anonymous functions are unique in that they are moved to the top of their containing scope during the compilation phase, before the code is executed. This means that you can use the function or before it's declared.
+
+```js
+functionA(); // This works even though foo is declared later in the code
+function functionA() { 
+  console.log("Hello, world!");
+}
+```
+Function expressions are not hoisted to the top. Example:
+
+```js
+functionB(); // This would result in error because function is not defined yet
+var functionB = function() {
+  console.log("Here I Am!");
+};
+```
 
 ## Arrow functions 
-asdasd
 
-## Callbacks
-asdasd
+`Arrow functions` are a different syntax of function that behaves similarly to normal functions. Is main advantage is that its syntax very short, its strength is being able to fit on one line (including its execution code).
 
+```js
+[1,2,3].forEach(function(num){
+  console.log(`num: `, num);
+});
+```
+Here is the same anonymous callback function from above, but this time utilizing the arrow function syntax
+```js
+[1,2,3].forEach((num) => {
+  console.log(`num: `, num);
+});
+```
+Arrow functions commonly have very short execution code, so it can be refactored into one line, here is the same function but refactored:
+```js
+[1,2,3].forEach((num) => {console.log(`num: `, num);});
+```
+Actually an even shorter syntax for an arrow function in a single line omits the use of curlybrackets `{}`. It is implicit that anything following the arrow `=>` represents the code that the function will execute. If there is only one parameter being passed into the arrow function, you can remove the brackets `()` representing our arguments before the arrow `=>` for readability. However, if passing in 2 parameters, braces are recommended such as '(time, date)'
+```js
+[1,2,3].forEach(num => console.log('num: ', num));
+```
 
+### Larger Arrow Fucntion syntax
 
+Arrow functions be as large as normal function expressions, or anon functions.  Here is an example
+```js
+const calculate = (a, b, operation) => {
+  let result;
+  if (operation === '+') result = a + b;  
+   else if (operation === '-') result = a - b;  
+   else if (operation === '*') result = a * b;
+   else if (operation === '/') result = a / b;
+   else  result = 'Invalid operation';  
+  return result;
+};
+console.log(calculate(16, 4, "+")); // Output: 64
+```
+Note: Arrow functions dont get assigned a value that the method `this.` can use. So you wont find many uses of the method inside an arrow function. Arrow functions inherit thier scope from the object they are called.
+
+##  Vim Terminal Text Editor
+[Check big Terminal and Git Note file](Terminal-and-git-notes.md)
 
 # `Week 3`
 
@@ -953,9 +1090,119 @@ const arrayB = ["A", ["B", "C"], "D", "E"];
 printItems(arrayB); // results in a flat array => ["A", "B", "C", "D", "E"]
 ```
 
+## Modules
+`Node.js` is the runtime we've been running our javascript files in. Within node, every file we've been running is actually its own module. Files are implicitly modules. <br>
 
-## Testing with Mocha and Chai
-friday asdasdsa
+By default when we `console.log(module)` to see what our current file's module is like, we notice information like the paths and we can notice that `exports` is an empty object.
+```js
+//firstFile.js
+console.log(module);
+//this is the output in console
+ Module {
+  id: '.',
+  path: '/home/labber/lighthouse/focal',
+  exports: {},    //  <- Notice how exports is empty
+  parent: null,
+  filename: '/home/labber/lighthouse/focal/firstFile.js',
+  loaded: false,
+  children: [],
+  paths: [
+    '/home/labber/lighthouse/focal/node_modules',
+    '/home/labber/lighthouse/node_modules',
+    '/home/labber/node_modules',
+    '/home/node_modules',
+    '/node_modules']}
+```
+If we clear and setup our firstFile.js like this:
+```js
+//firstFile.js
+const goodMorning = function(person) {
+  console.log(`Good Morning ${person}! How are you doing?`);
+}
+```
+In order for modules to communicate across modules and pass information to one another we need to add `require` keyword and pass the file into our second file.<br>
+<i>-Technically adding .js to the filename is not required as its implicit-</i>
+```js
+//secondFile.js
+const goodMorning = require('./firstFile.js');
+//this assumes we have a file in our directory named firstFile.js
+//Note: we can define the location using relative paths ^
+goodMorning("Kathy");
+```
+Our output will still not be functioning correctly. We are still returning an empty object from firstFile.js. In order to remedy this we need to add `module.exports` and define our function.
+```js
+//firstFile.js
+const goodMorning = function(person) {
+  console.log(`Good Morning ${person}! How are you doing?`);
+  module.exports = goodMorning;
+}
+```
+
+## NPM and definitions
+`NPM `is a package manager used for downloading open-source `packages` so that node.js can have a greater functionality. Packages are self contained `libraries` that may or may not include dependencies, ie packages that <b>They</b> also rely on to function properly.<br>
+
+`Package` is a collection of JS modules commonly paired with a package.json file, many of them are made open-source on NPM
+
+A `library` is a bit different from a package, they are independant collections of ready made code that can be downloaded for developers to use in thier programs (not specific to Javascript).
+
+`package.json` are an outline of the packages properties, and details, often containing `scripts` and other info.
+
+Often looks like this example, and appears similar to objects in .js files<br> Hence the name <i>Java-Script-Object-Notation</i>
+```json
+{
+  "name": "project-name",
+  "version": "1.0.0",
+  "description": "Short project summary",
+  "main": "index.js",
+  "scripts": {
+    "myscript": "ENV=development node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.4"
+  }
+}
+```
+`package-lock.json` is a list of all of the depencies for this project. This file and `package.json` should be included when checking projects into git
+
+`node_modules` folder is often ignored with a .gitignore rule as we dont want to include that in our repos.
+
+To create a .gitignore pwd to your repo and `$ touch .gitignore`. Open the .gitignore in VSC and if you want to ignore files with .log extension and a directory named node_modules, your .gitignore file would look like this:
+```
+*.log
+node_modules/
+```
+After saving, git will ignore the files and directories when you perform Git operations like `git add`, `git commit`, and `git status`.
+
+[Heres a useful resource on gitignore](https://github.com/github/gitignore?tab=readme-ov-file#a-collection-of-gitignore-templates)
+
+### Installing packages with NPM
+Cd into our working directory and run `$ npm init` <br>
+It asks a series of initialization questions when generating the package.json, this can be edited later. 
+
+We can run `$ npm install chalk@4.1.2` to install chalk in our pwd at a specified version by defining it with `@4.1.2`
+
+
+
+### Require
+Remember to include require our `require` somewhere within our .js files so that we can import functionality of the installed packages into our projects.
+
+```js
+const chalk = require("chalk");
+const message = `${chalk.red("Red,")} ${chalk.green("Green,")} ${chalk.blue("Blue")}`;
+console.log(message); //=> Red, Green, Blue! 
+//Now our letters are rgb shaded in console
+```
+
+
+
+## Unit Testing
+Unit testing is the practice of writing code to programmatically test the actual code we want to write.
+
+
+## with Mocha and Chai
 
 ## Object Oriented JS
 sunday asdasdasd
