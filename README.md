@@ -6,7 +6,7 @@
 This repository contains all of my notes taken by [Chris](https://github.com/ChrisPytel) that I've compiled for the Lighthouse Labs Web Development Bootcamp. 
 https://www.markdownguide.org/basic-syntax/
 
-# Table of Contents for Module 1 - Javascript
+# Table of Contents for Javascript Content
 
   * [Variables and Datatype Properties](#variables)
   * [Strings](#strings)
@@ -31,15 +31,26 @@ https://www.markdownguide.org/basic-syntax/
       * Arrow functions
       * Callbacks
     * [Week 3](#week-3)
-      * Object Methods
-      * Recursion
-      * Testing with Mocha and Chai
-      * Object Oriented JS
+      * Object Methods +++
+      * Recursion +++
+      * Testing with Mocha and Chai +++
+      * Object Oriented JS +++
     * [Week 4](#week-4)
-      * ...
-      * ...
-      * ...
-      * ...
+      * NPM +++
+      * Object Oriented JS +++
+      * Async Control Flow +++
+    * [Week 5](#week-5)
+      * Networking Intro
+      * HTTP
+      * JSON & APIS
+      * Promises
+    * [Week 6](#week-6)
+      *  
+      *  
+      *  
+      *  
+      * 
+
 
 
 
@@ -824,14 +835,14 @@ console.log(values); // Will Output the values: ['Tony', '56', 'Waste Management
 # Weekly Notes Recap
 
 
-# `Week 1`
+# ---Week 1---
 `Gists` are a part of github that function as repositories for singular files, they can be forked/cloned and shared via link for peers to review
 
 `Refactoring` is the practice of going back to your code and cleaning up. During this process you remove redundant logic and streamline code for readability. Lightweight code is better
 
-`ESlint` is a npm package for node used to format your .js files to a certain standard
+`ESlint` is a npm package for node used to format your .js files to a certain clean and readable industry standard
 
-`Markdown` aka .md is a filetype similar to .txt but it is much more versatile. Generally youll find find one in most github repos as a README.md
+`Markdown` aka .md is a filetype similar to .txt but it is much more versatile. Generally youll find find one in most github repos as a README.md (funfact this document is a .md!)
 
 `Command line arguments`
 The built in node method `process.argv` takes whatever we input into our console and returns an array with every arguement as its own string within an array.
@@ -857,7 +868,7 @@ console.log(sumArguments(commandLineArgs)); //prints our sum of 64
 
 
 
-# `Week 2`
+# ---Week 2---
 ## Primitives Datatypes Vs Objects
 [covered here](#primitive-vs-objects)
 
@@ -919,8 +930,8 @@ function greet(name, callback) {//this is the reciever function
 function passName(personGreeted) {//this is the callback function, it will return its results into the reciever function
   return `${personGreeted}, what a nice day today!`;
 }
-console.log(greet("Steve", passName)); 
-// Output: Hello Steve, what a nice day today!
+console.log(greet("Ramona", passName)); 
+// Output: Hello Ramona, what a nice day today!
 ```
 
 ## Anonymous functions
@@ -928,24 +939,27 @@ Anonymous functions are unique in that they do not be defined to a variable or n
 
 ```js
 function longNames(names, callback) {
-  let maxIndex = 0;
-  
-  for (let i = 1; i < names.length; i++) {
-    if (names[i].length > names[maxIndex].length) {
-      maxIndex = i;
+  let longestNameIndex = 0;
+
+for (let i = 1; i < names.length; i++) {
+    if (names[i].length > names[longestNameIndex].length) {
+      longestNameIndex = i;
+      console.log(`new longest name is ${names[longestNameIndex]}`);
     }
   }
-  callback(names[maxIndex]);
+  let longestName = names[longestNameIndex];
+  callback(longestName);
 }
-//this function passed in as an arg is is anonymous
-longNames(["Alexander", "Christopher", "Anastasia", "Gabrielle"], function(index) {
-  console.log("The longest name here is:", index);
-});
+
+//this function passed in as an arg and is anonymous
+longNames(["Alexander","Christopher","Anastasia","Montgomery","Gabrielle"], function(cbPara) {
+  console.log(`The longest name here is: ${cbPara}`);
+}); 
+// should print to console => Christopher
 ```
 
 ### Hoisting anon functions
 Anonymous functions are unique in that they are moved to the top of their containing scope during the compilation phase, before the code is executed. This means that you can use the function or before it's declared.
-
 ```js
 functionA(); // This works even though foo is declared later in the code
 function functionA() { 
@@ -953,7 +967,6 @@ function functionA() {
 }
 ```
 Function expressions are not hoisted to the top. Example:
-
 ```js
 functionB(); // This would result in error because function is not defined yet
 var functionB = function() {
@@ -1005,7 +1018,9 @@ Note: Arrow functions dont get assigned a value that the method `this.` can use.
 ##  Vim Terminal Text Editor
 [Check big Terminal and Git Note file](Terminal-and-git-notes.md)
 
-# `Week 3`
+<br><br><br><br>
+
+# ---Week 3---
 
 ## Object Methods
 Object methods are `functions` that are defined as a property within an object. They are commonly used to perform operations to the datastructure within the object it resides.A method has access to the datastructure and can self reference itself using the `this` keyword.
@@ -1121,7 +1136,7 @@ const goodMorning = function(person) {
 }
 ```
 In order for modules to communicate across modules and pass information to one another we need to add `require` keyword and pass the file into our second file.<br>
-<i>-Technically adding .js to the filename is not required as its implicit-</i>
+<i>- Technically adding .js to the filename is not required as its implicit -</i>
 ```js
 //secondFile.js
 const goodMorning = require('./firstFile.js');
@@ -1134,8 +1149,8 @@ Our output will still not be functioning correctly. We are still returning an em
 //firstFile.js
 const goodMorning = function(person) {
   console.log(`Good Morning ${person}! How are you doing?`);
-  module.exports = goodMorning;
 }
+module.exports = goodMorning;
 ```
 
 ## NPM and definitions
@@ -1198,14 +1213,90 @@ console.log(message); //=> Red, Green, Blue!
 
 
 
-## Unit Testing
-Unit testing is the practice of writing code to programmatically test the actual code we want to write.
+## Unit Testing and TDD
+`Unit testing` is the practice of writing code to programmatically test the actual code we want to write.
+Often times code starts off small and grows to be huge in terms of size and complexity. `Unit testing `is a practice that ensures that as our codebase grows, we can ensure that modules function as they should.
 
 
-## with Mocha and Chai
+## Mocha and Chai 
+
+
+
+<br><br><br><br>
+
+# ---Week 4---
+
+## NPM
+
+
 
 ## Object Oriented JS
-sunday asdasdasd
+
+
+
+## Asynchronous Control Flow
+
+
+
+## Closures 
+
+
+
+
+<br><br><br><br>
+
+# ---Week 5---
+
+
+## Networking Intro
+
+
+
+
+
+
+## HTTP
+HTTP is a protocal used to read and write data in a simple text based manner. Initially only HTML was supported but now it handles many filetypes like .js, .css, .pdf, etc...
+
+HTTP protocol operates on a `request` then `response` based procedure. A client makes a request for some data, and the servers duty is to send the requested data, or something else as a response.
+
+### Methods
+There are 9 HTTP request methods, the 4 most common for our purposes are:
+
+`GET`: used to "get" some data from the server<br>
+`POST`: usually used to create some new data<br>
+`PUT`: generally used for editing existing data on the server<br>
+`DELETE`: used to delete some existing data<br>
+
+### URL
+`URL` stands for `Uniform Resource Locator`. A URL is nothing more than the address of a given unique resource on the Web, akin to a postal code address for mailing.
+
+    http://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#LocationWithinDocument
+
+Here is a technical breakdown of the example url above: <br> `http://`: represents the scheme, it indicates which protocol the browser needs to use to request the resource, usually as http:// or https:// <br> `www.example.com`: represents the domain. <br> `:80`: represents the port used to access the resources on the web server, usually omitted if the website uses standard ports of 80 for HTTP and 443 for HTTPS.
+.<br>`/path/to/myfile.html`: represents the file location on the server<br>  `?key1=value1&key2=value2`: represents any extra parameters to be provided to the web server.<br>  `#LocationWithinDocument`: represents the anchor point, acts similarly to a bookmark when sharing links.
+
+### 
+    `200`: "Everything went great!"
+    `201`: "The request has succeeded and a new resource has been created as a result."
+    `404`: "Resource was not found."
+    `500`: "The server had an error."
+
+
+## JSON & APIS 
+
+
+
+## Promises
+
+
+
+
+
+# Week 6
+
+
+## 
 
 
 
@@ -1218,18 +1309,6 @@ sunday asdasdasd
 
 
 
-# Week 4
-
-## aa
-
-
-## bb 
-
-
-## cc 
-
-
-## dd
 
 
 
@@ -1239,23 +1318,7 @@ sunday asdasdasd
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//msn messenger clone for final project with customizable sounds
 
 
 
