@@ -17,6 +17,7 @@ https://www.markdownguide.org/basic-syntax/
   * [Functions](#functions)
   * [Comparisons and Booleans](#comparisons-and-booleans)
   * [Objects](#objects)
+  * [Methods](#methods)
 
 
     * [Week 1](#week-1)
@@ -177,7 +178,7 @@ Strings are datatype that holds text information, aka string literals
 ```js
 let studentFirstName = "Chris";
 ```
-You can build a string with variables inserted between
+You can build a string with variables inserted between, this is called concatenation. Example: 
 ```js
 let customerName = "Chris";
 let welcomeMessage = "Hello nice to meet you " +customerName". It's a nice day today.";
@@ -664,10 +665,11 @@ myFunc();
 
 # Comparisons and Booleans
 
-//If statements are used to make decisions within functions in code.
-  //The keyword if runs the code in the curly braces under certain conditions that are defined in the parentheses. 
-  //These conditions are known as Boolean conditions and they may only be true or false.
+If statements are used to make decisions within functions in code.
+The keyword if runs the code in the curly braces under certain conditions that are defined in the parentheses. 
+These conditions are known as Boolean conditions and they may only be true or false.
 
+```js
   function trueOrFalse(arguement) {
     if (arguement) {
       return "Yes, that was true";
@@ -675,10 +677,11 @@ myFunc();
     return "No, that was false";
   }
   console.log(trueOrFalse(true));     // the output would display true, as we passed in a true arguement into the function
+  ```
 
-//EQUALITY comparator is ==
-  
-  // you can set the conditions of an if statement to equal something, in this case if the value passed in is equal to 12, run the contents of the statement
+EQUALITY comparator is `==`<br>  
+you can set the conditions of an if statement to equal something, in this case if the value passed in is equal to 12, run the contents of the statement
+```js
   function testEqual(val) {
     if (val == 12) {
       return "Equal";
@@ -686,20 +689,22 @@ myFunc();
     return "Not Equal";
   }  
   console.log(testEqual(10));       // would output not equal
-
-//NOT EQUALS comparator is !=
-  // The operator to check if two values are NOT equal is !=
+```
+NOT EQUALS comparator is `!=`<br>
+The operator to check if two values are NOT equal is `!=`. In the example below, If the value is NOT equal to 99, return a TRUE boolean and outputs "Not Equal"
+```js
   function test(val) {
-    if (val != 99) {            //If the value is NOT equal to 99, return a TRUE boolean and outputs "Not Equal"
+    if (val != 99) {       
       return "Not Equal";
     }
     return "Equal";
   }  
   console.log(test(10));
+  ```
 
 
-// Strict equality === is similar to ==. 
-//Although === literally checks if the datatypes are identical, == can perform type conversions between string and numbers
+Strict equality `===` is similar to `==`
+Although === literally checks if the datatypes are identical, == can perform type conversions between string and numbers
 3 ===  3  // true as they are both number 3
 3 === '3' // false as one is numerical 3 is and the other is string '3'
 
@@ -798,6 +803,7 @@ const coffee = {
   cupType: "paper",
 };
 
+
 console.log(coffee[key]);  // will output: size: 400
 ```
 note: how passing in a variable does not use  console.log(coffee.[key]);       remember to avoid the dot before adding variable
@@ -829,6 +835,42 @@ let boss = {
 let values = Object.values(boss);  
 console.log(values); // Will Output the values: ['Tony', '56', 'Waste Management Consulting']
 ```
+
+
+
+
+
+
+
+# Methods
+
+
+
+
+
+
+
+
+The map() method in JavaScript is used to iterate over an array and create a new array by applying a callback function to each element in the original array.
+
+Here's how it works:
+
+  You provide a callback function to the `map()` method.<br> 
+  The `map()` method calls the callback function once for each element in the array, in order.<br> 
+  For each element, the callback function is called with three arguments: `the current element`, the `index` of the current element, and `the array itself`.<br> 
+  The return value of the callback function becomes the value of the corresponding element in the new array.<br> 
+  The map() method returns a new array containing the results of calling the callback function on each element of the original array.
+
+Example:
+```js
+const numbers = [1, 2, 3, 4, 5];
+// Uses map() to create a new array where each element is doubled
+const doubledNumbers = numbers.map((number) => {
+    return number * 2;
+});
+console.log(doubledNumbers); // Output: [2, 4, 6, 8, 10]
+```
+
 
  <br> <br> <br> <br> ------------------------------------------<br> <br> <br> <br> <br>
 
@@ -886,8 +928,9 @@ for (const key in person) {
 }
 ```
 
+
 ## Higher Order functions
-Higher order functions take in another function as an arguement, <b>or</b>
+Higher order functions take in another function as an argument, <b>or</b>
 returns a function as its result. 
 <br> Here is an example; `applyOperation` takes in 2 numbers and a function, and <b>also</b> returns a function.
 
@@ -1050,7 +1093,7 @@ const fantasyNovel = {
               6 : "Reward",
               7 : "Return to the Kingdom"
   },
-  whereILeftOff :function(bookmark){
+  whereILeftOff : function(bookmark){
     console.log(this.chapters[bookmark]);//`this` is referring to fantasyNovel
   }
 }
@@ -1219,27 +1262,33 @@ Often times code starts off small and grows to be huge in terms of size and comp
 
 
 ## Mocha and Chai 
-
+update text here
 
 
 <br><br><br><br>
 
 # ---Week 4---
 
-## NPM
-
-
 
 ## Object Oriented JS
-
+update text here
 
 
 ## Asynchronous Control Flow
 
 
 
-## Closures 
 
+## Asynchronous Return Values
+
+
+
+
+
+
+
+## Closures 
+kind of a bonus, text here
 
 
 
@@ -1251,7 +1300,8 @@ Often times code starts off small and grows to be huge in terms of size and comp
 ## Networking Intro
 
 
-
+TCP
+UDP
 
 
 
@@ -1273,30 +1323,179 @@ There are 9 HTTP request methods, the 4 most common for our purposes are:
 
     http://www.example.com:80/path/to/myfile.html?key1=value1&key2=value2#LocationWithinDocument
 
-Here is a technical breakdown of the example url above: <br> `http://`: represents the scheme, it indicates which protocol the browser needs to use to request the resource, usually as http:// or https:// <br> `www.example.com`: represents the domain. <br> `:80`: represents the port used to access the resources on the web server, usually omitted if the website uses standard ports of 80 for HTTP and 443 for HTTPS.
-.<br>`/path/to/myfile.html`: represents the file location on the server<br>  `?key1=value1&key2=value2`: represents any extra parameters to be provided to the web server.<br>  `#LocationWithinDocument`: represents the anchor point, acts similarly to a bookmark when sharing links.
+Here is a technical breakdown of the example url above: <br> `http://`: represents the scheme, it indicates which protocol the browser needs to use to request the resource, usually as http:// or https:// <br> `www.example.com`: represents the domain. <br> `:80`: represents the port used to access the resources on the web server, usually omitted if the website uses standard ports of 80 for HTTP and 443 for HTTPS.<br>
+`/path/to/myfile.html`: represents the file location on the server<br>  `?key1=value1&key2=value2`: represents any extra parameters to be provided to the web server.<br>  `#LocationWithinDocument`: represents the anchor point, acts similarly to a bookmark when sharing links.
 
-### 
-    `200`: "Everything went great!"
-    `201`: "The request has succeeded and a new resource has been created as a result."
-    `404`: "Resource was not found."
-    `500`: "The server had an error."
+### HTTP Responses
+After the server has recieved a request from the client it reads the path and method and figues out how it should respond. After the server has tried to perform the action it will send back lots of info. The most important is the `Status Code` and the `Body`
+
+Common examples of `status codes` are when something goes wrong, it will return a code and usually display a page saying "Hey, we couldnt find this file on our server!"
+Some common examples are:
+
+  `200`: "Everything went great!"
+  `201`: "The request has succeeded and a new resource has been created as a result."
+  `404`: "Resource was not found."
+  `500`: "The server had an error."
+
+Here is a big list of status codes:  https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/404
+
+The response will also contain some data that was originally requested, this data is referred to as the `body` and usually it will contain webpages (HTML) or data encoded in JSON.
+
+### Headers
+Often in an HTTP request or response, there will be a component referred to as a header. It signifies important information and will be formatted in a key-value pair. Both HTML requests and responses both contain key-value based headers (ex: Accept-Language: fr, Content-Type: text/html, etc.)
+
+`Reminder`: HTTP requests must contain the verb/method (ex: GET) and the Path (ex: /about)
 
 
-## JSON & APIS 
+## JSON
+JSON is a data format that is the basis of many web related interactions. It stands for `JavaScript Object Notation`, it is very similar in syntax to objects that we've been making so far, but different in a couple of ways. JSON doesnt support comment writing and is not capable of containing methods or functions.
 
 
+JSON is a subset of JavaScript that allows string-representation of objects.<br> 
+
+
+```json
+{
+  "name": "New York City",
+  "boroughs": [
+    "Manhattan",
+    "Queens",
+    "Brooklyn",
+    "The Bronx",
+    "Staten Island"],
+  "population": 8491079,
+  "area_codes": [212, 347, 646, 718, 917, 929],
+  "position": { "lat": 40.7127, "lng": -74.0059 }
+}
+```
+`Reminder`: JSON requires quotes around the keys as well for it to be correct syntax. <br><br>
+
+### Serialization
+Serialization is the practice of taking our initial JSON which is the string based representation of an object, and converting it into an object. <br>Commonly done with `JSON.parse()` to serialize the object and convert from string->obj, and `JSON.stringify()` to de-serialize it and convert it back from obj->string.
+
+```js
+const jsonString = '{"a":1, "b":2, "foo":"bar"}'; // initial string version of a JS Object
+console.log(`Our initial json is a ${typeof jsonString}:`, jsonString); 
+
+// using JSON.parse() we are now de-serializing from string->obj
+const obj = JSON.parse(jsonString); 
+console.log(`\nWe can see that obj is now an ${typeof obj}:`, obj); //object
+
+//We can make a change within our object now such as removing a key
+delete obj.foo;
+console.log(`Updated object is now:`, obj);
+
+//And then serialize it back from obj->string with JSON.stringify()
+const serializedObj = JSON.stringify(obj); 
+console.log(`\nAfter serializing our obj is now a ${typeof serializedObj}:`, serializedObj); //is now a string
+```
+
+JSON overtook XML in popularity as a method of exchanging data, and is also language independant. It is common to see other languages such as Python, Ruby, C#, Java and Rust utilize JSON.<br><br> 
+It is used in many different places since JSON is a very easy way to store key-value data. For example like in config/settings files like `package.json`. <br>
+
+Another very common usage of JSON is when utilizing data received from servers when requesting `API` data
+
+
+
+
+## API's 
+API stands for `Application Programming Interface`, they commonly allow for systems to work together, Usually from information taken from a server on the web. <br> API's are similar to webpages, in that you make a request to the API server and the server returns some sort of data back to you.
+APIs are commonly used to enable interaction with web services, such as social media platforms, payment gateways, and mapping services. You can access an API for something such as the [Star Wars API](https://swapi.dev/), which would return JSON information from its extensive library of Star Wars related information.
+
+
+Good reference resource for terminology https://www.youtube.com/watch?v=7YcW25PHnAA
+
+<br> REST API stands for `Representational State Transfer`
 
 ## Promises
 
+Promises are an alternate way of dealing with eventual result of an async operation (such as fetching API data). 
+
+A promise is an object, it is defined with the `Promise(function)` constructor, they are always connected to a `.then()` and a `.catch()`
+
+Promises are defined with a function as their argument and takes 2 parameters `resolve` and `reject`. Resolve and reject are built in functions in javascript to handle the promises fulfilment or rejection.
+
+```js
+const promise = new Promise((resolve, reject) =>{
+
+const randomNumber = Math.random();
+  if (randomNumber > 0.5) {
+    resolve(randomNumber); 
+  }
+  else if (randomNumber <= 0.5){
+    reject(randomNumber);
+  }
+})
+
+promise 
+  .then((goodValue)=> { console.log(`Yay, Promise Fulfilled!`, goodValue);})
+  .catch((badValue)=> { console.log(`Promise Rejected. OH NO`, badValue);})
+```
+`.then()` is used for handling a resolved value when the promise is fulfilled<br>
+`.catch()` is triggered and used to handle any errors in the promise not being fulfilled
+
+In a callback waterfall, for every error case, you need to define it specifically. In promises, you only need to define one, this is the `.catch()`, and it handles the logging of all errors, whenever they occur in the waterfall. A callback waterfall becomes much more managable if it is huge to use many `.then()` handles, and only a single `.catch()`
 
 
+
+```js
+const fs = require ('fs'); //gives us access to local filesystem control
+
+fs.promises.readFile('./story.txt', {encoding: 'utf-8'})
+  //if sucessful in reading file, run this
+  .then(result => { 
+    console.log(`\nContent of story.txt:\n`, result);
+    return fs.promises.writeFile(`./storyCopy.txt`, result)
+  })
+  //if sucessful in copying file run this
+  .then(()=> { 
+    console.log(`\nOur copy was succesful!`);
+    return fs.promises.readFile(`./storyCopy.txt`, {encoding: 'utf-8'})
+  })
+  //if sucessful in reading file run this
+  .then(copyText => console.log (`\nFinally... here is our copied file contents:\n`, copyText))
+  //only gets called when error during the whole process
+  .catch(error =>  console.log(`There was an error:`, error)) 
+```
+
+Good video reference for promises: https://www.youtube.com/watch?v=DHvZLI7Db8E
 
 
 # Week 6
 
 
-## 
+## JS and the event loop
+optional entry
+
+## Command line cURL
+
+
+## Domain Name System (DNS)
+
+
+## Web Servers creation
+
+
+## ExpressJS and Template Engines
+
+## CRUD
+
+CRUD is an acronym that stands for Create, Read, Update, and Delete. These are the methods used when interacting with handler code and handling client/server requests.
+
+
+| CRUD        | HTTP Method   | What it does
+|-------------|---------------|------------
+|`Create`     | POST          | Adds a new record        
+|`Read`       | GET           | Retrieves the value of a record      
+|`Update`     | PUT           | Updates a record's value       
+|`Delete`     | DELETE        | Deletes a record      
+ 
+## Cookies
+
+## Middleware
+  Optional
+
+# Week 7
 
 
 
@@ -1318,7 +1517,29 @@ Here is a technical breakdown of the example url above: <br> `http://`: represen
 
 
 
-//msn messenger clone for final project with customizable sounds
+
+
+
+
+
+
+<br><br><br><br><br><br><br><br>
+
+### Common prototype methods to remember
+
+arr.length / string.length <br>
+
+array.sort(); returns and also sorts the source array
+
+array.push(value); / array.pop(value);
+
+array.splice();
+
+array.join();
+
+array.forEach();
+
+ar
 
 
 
@@ -1327,16 +1548,19 @@ Here is a technical breakdown of the example url above: <br> `http://`: represen
 
 
 
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-# extra unsorted stuff
 
-note during the LHL Git and GitHub Account Setup
-  
-  make sure the terminal in VSC is set to the LHL Linux Terminal
-  an error was made when attempting to use the default windows one
+<br><br><br><br><br><br><br><br>
 
-practice setting up new github account and getting ssh key process locked down, to not be clueless on process ever again
+### note on git commits
 
-useful references
-http://rogerdudler.github.io/git-guide/files/git_cheat_sheet.pdf
-http://rogerdudler.github.io/git-guide/
+Naturally the first impulse when writing commit messages is to use past tense to describe what you accomplished in this last series of modifications to your code. Instead of writing in the past tense style such as: <br>
+git commit -m `"Created a function to recieve IP data and then converted it to object to send later"` <br>
+
+Its better to reframe and ask, what will this code do, and write in the imperitave tense. 
+<br><b>The code in this commit will: </b>Add express as a dependancy and create .gitignore file<br>
+
+Our commit message should be: <br>
+git commit -m  `"Add express as a dependancy and create .gitignore file"`
+
+OR: <br>
+git commit -m  `"Add function to recieve IP data and returns converted object"`
